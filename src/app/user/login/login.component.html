@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h1>Login Form</h1>
+            <form #loginForm="ngForm" (ngSubmit)="hadleLogin(loginForm.value)">
+                <div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="username" pattern="[A-Z][a-z]+\s[A-Z][a-z]+" class="form-control"
+                        placeholder="Full Name" required ngModel>
+                </div>
+                <div class="alert alert-danger"
+                    *ngIf="loginForm?.controls.username?.touched && loginForm?.controls.username?.errors?.required">
+                    This field is required!
+                </div>
+                <div class="alert alert-danger" *ngIf="loginForm?.controls.username?.errors?.pattern">
+                    Name shoud contain space between first and last name!
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,16}$" class="form-control"
+                        placeholder="Type your password" type="password" required ngModel>
+                </div>
+                <div class="alert alert-danger"
+                    *ngIf="loginForm?.controls.passwords?.controls.password?.touched && loginForm?.controls.passwords?.controls.password?.errors?.required">
+                    This field is required!
+                </div>
+                <div class="alert alert-danger"
+                    *ngIf="loginForm?.controls.passwords?.controls.password?.errors?.pattern">
+                    Password shoud consists between 3 and 16 symbols: letters and digits!
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block" [disabled]="loginForm.invalid"> Login in
+                        Your
+                        account
+                    </button>
+                </div>
+                <p class="text-center">Have not an account? <a routerLink='/profile/register'>Register here</a> </p>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

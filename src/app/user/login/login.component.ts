@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(user).subscribe((data) => {
       this.toastr.success('Logged in succesfully');
       this.userService.saveUserInfo(data);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/books/all']);
     });
   }
 }

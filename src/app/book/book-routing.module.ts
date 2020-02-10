@@ -3,16 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 import { EditComponent } from './edit/edit.component';
-import { ListComponent } from './list/list.component';
+import { BooksComponent } from './books/books.component';
 
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'all' },
-    { path: 'all', component: ListComponent },
-    { path: 'user', component: ListComponent},
+    { path: 'all', component: BooksComponent },
+    { path: 'user', component: BooksComponent },
     { path: 'create', component: CreateComponent },
     { path: 'details/:id', component: DetailComponent },
     { path: 'edit/:id', component: EditComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 // @NgModule({

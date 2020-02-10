@@ -1,0 +1,20 @@
+<div class="container" *ngFor="let book of allBooks">
+    <div class="card">
+        <div class="card-body">
+            <img src="{{book.imageUrl}}" class="center">
+            <h5 class="card-title">{{book.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{book.bookAuthor}}</h6>
+            <p class="card-text">{{book.description}}</p>
+            <li class="list-group-item">Genres:
+                <span *ngFor="let genre of book.genres">{{genre}} </span>
+            </li>
+            <li class="list-group-item">
+                <a [routerLink]="['/books/details', book['_id'] ]" class="card-link">details</a>
+                <ng-template [ngIf]="isAuthor(book)">
+                    <button (click)="deleteBook( book['_id'])" class="card-link">delete</button>
+                    <a [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</a>
+                </ng-template>
+            </li>
+        </div>
+    </div>
+</div>

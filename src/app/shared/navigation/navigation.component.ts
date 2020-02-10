@@ -27,7 +27,7 @@ export class NavigationComponent implements OnInit, DoCheck {
     this.userService.logout().subscribe(data => {
       this.toastr.success('Logout succesfully', 'Success!');
       localStorage.clear();
-      this.router.navigate(['/profile']);
+      this.router.navigate(['']);
     });
   }
 

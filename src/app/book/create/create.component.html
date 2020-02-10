@@ -1,1 +1,156 @@
-<p>create works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <h1>Create your new book</h1>
+            <form #createBookForm="ngForm" (ngSubmit)="hadleCreateBook(createBookForm.value)">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-book"></i> </span>
+                            </div>
+                            <input name="title" pattern="[A-Z][A-Za-z\s]+" class="form-control" placeholder="Book title"
+                                required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.title?.touched && createBookForm?.controls.title?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.title?.errors?.pattern">
+                            Title shoud contain only laters and start with capital letter!
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user-tie"></i> </span>
+                            </div>
+                            <input name="bookAuthor" pattern="[A-Z][a-z]+\s[A-Z][a-z]+" class="form-control"
+                                placeholder="Names of book's author" required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.bookAuthor?.touched && createBookForm?.controls.bookAuthor?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.bookAuthor?.errors?.pattern">
+                            Name should contain two names and space between first and last name!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-edit"></i> </span>
+                            </div>
+                            <input name="description" pattern=".{20,}" class="form-control" placeholder="Description"
+                                required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.description?.touched && createBookForm?.controls.description?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.description?.errors?.pattern">
+                            Description should contain at least 20 leters!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-folder"></i> </span>
+                            </div>
+                            <input name="genres" pattern="^[A-Za-z ]+$" class="form-control" placeholder="Genres"
+                                required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.genres?.touched && createBookForm?.controls.genres?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.genres?.errors?.pattern">
+                            Genres should contain genres of book separeted by space!
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+                            </div>
+                            <input name="year" pattern="\d{4}" class="form-control" placeholder="Year issue" required
+                                ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.year?.touched && createBookForm?.controls.year?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.year?.errors?.pattern">
+                            Year should contain exactly 4 digits!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user-tie"></i> </span>
+                            </div>
+                            <input name="publisher" pattern="[A-Z][a-z\d\s]+" class="form-control"
+                                placeholder="Publisher" required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.publisher?.touched && createBookForm?.controls.publisher?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.publisher?.errors?.pattern">
+                            Publishers should start wth capital letter and contain letters and digits!
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-dollar-sign"></i> </span>
+                            </div>
+                            <input name="price" pattern="^\d+[.]?\d{1,2}$" class="form-control" placeholder="Price"
+                                required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.price?.touched && createBookForm?.controls.price?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.price?.errors?.pattern">
+                            Price should contain only digits and one point!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+                            </div>
+                            <input name="imageUrl" pattern="^(https:\/\/)|(http:\/\/)[\w\W]+$" class="form-control"
+                                placeholder="Image Url" required ngModel>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="createBookForm?.controls.imageUrl?.touched && createBookForm?.controls.imageUrl?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="alert alert-danger" *ngIf="createBookForm?.controls.imageUrl?.errors?.pattern">
+                            Image Url should start wth http:// or https://
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block" [disabled]="createBookForm.invalid">
+                                Create your book!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

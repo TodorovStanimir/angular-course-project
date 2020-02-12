@@ -41,4 +41,12 @@ export class BookService {
         })
       });
   }
+
+  deleteBook(id: string) {
+    return this.http.delete(`${this.CREATE_BOOK_URL}/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: `Kinvey ${localStorage.getItem('token')}`
+      })
+    });
+  }
 }

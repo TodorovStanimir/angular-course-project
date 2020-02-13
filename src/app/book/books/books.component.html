@@ -9,61 +9,14 @@
                 <p>Genres: <span *ngFor="let genre of book.genres">{{genre}} </span></p>
                 <div class="buttons-container">
                     <div class="buttons">
-                        <li> <a [routerLink]="['/books/details', book['_id'] ]" class="card-link">details</a></li>
+                        <li> <button [routerLink]="['/books/details', book['_id'] ]" class="card-link">details</button></li>
                         <ng-template [ngIf]="isAuthor(book)">
                             <li> <button (click)="deleteBook( book['_id'])" class="card-link">delete</button></li>
-                            <li> <a [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</a></li>
+                            <li> <button [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</button></li>
                         </ng-template>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-<!-- <div>
-    <div>
-        <div *ngFor="let book of allBooks">
-            <img src="{{book.imageUrl}}">
-            <h5>{{book.title}}</h5>
-            <h6>{{book.bookAuthor}}</h6>
-            <p>{{book.description}}</p>
-            <li>Genres:
-                <span *ngFor="let genre of book.genres">{{genre}} </span>
-            </li>
-            <li>
-                <a [routerLink]="['/books/details', book['_id'] ]" class="card-link">details</a>
-                <ng-template [ngIf]="isAuthor(book)">
-                    <button (click)="deleteBook( book['_id'])" class="card-link">delete</button>
-                    <a [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</a>
-                </ng-template>
-            </li>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="container" *ngFor="let book of allBooks"></div>
-<div class="card">
-    <div class="card-body">
-        <img src="{{book.imageUrl}}" class="center">
-        <h5 class="card-title">{{book.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{book.bookAuthor}}</h6>
-        <p class="card-text">{{book.description}}</p>
-        <li class="list-group-item">Genres:
-            <span *ngFor="let genre of book.genres">{{genre}} </span>
-        </li>
-        <li class="list-group-item">
-            <a [routerLink]="['/books/details', book['_id'] ]" class="card-link">details</a>
-            <ng-template [ngIf]="isAuthor(book)">
-                <button (click)="deleteBook( book['_id'])" class="card-link">delete</button>
-                <a [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</a>
-            </ng-template>
-        </li>
-    </div>
-</div>
-</div> -->

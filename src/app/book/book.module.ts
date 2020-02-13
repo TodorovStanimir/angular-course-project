@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
-import { DetailComponent } from './detail/detail.component';
+import { DetailsComponent } from './details/details.component';
 import { BooksComponent } from './books/books.component';
 import { BookRoutingModule } from './book-routing.module';
 
 
 @NgModule({
-  declarations: [CreateComponent, EditComponent, DetailComponent, BooksComponent],
+  declarations: [CreateComponent, EditComponent, DetailsComponent, BooksComponent],
   imports: [
     CommonModule,
     FormsModule,

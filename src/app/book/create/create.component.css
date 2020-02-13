@@ -1,3 +1,16 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } */
+  
+.opacity {
+    opacity: 0.7;
+    border-radius: 0.5rem;
+    background: grey;
+    color: white;
+}
+
 button {
     cursor: not-allowed;
 }
@@ -9,7 +22,9 @@ input.ng-invalid.ng-touched {
     border-left: 5px solid #A94442; /* red */
 }
 h1 {
+    margin-top: 1cm;
+    margin-left: 5cm;
     text-align: left;
-    color: grey;
+    color: white;
 }
 

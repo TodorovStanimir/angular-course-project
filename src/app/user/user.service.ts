@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { APP_KEY, APP_SECRET } from '../core/kinvey.tokens';
 import { IUser } from '../shared/interfaces/user';
+import { IUserInfo } from '../shared/interfaces/userInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,15 @@ export class UserService {
     return this.http.post(`${this.BASE_URL}/_logout`, {}, {
       headers: new HttpHeaders({
         Authorization: `Kinvey ${this.token}`
+      })
+    });
+  }
+
+  getUser(username: string) {
+    return this.http.get<IUserInfo[]>(`${this.BASE_URL}/?query={"username":"${username}"}`, {
+      headers: new HttpHeaders({
+        Authorization: `Kinvey ${this.token}`,
+        'Content-Type': 'application/json'
       })
     });
   }

@@ -49,4 +49,22 @@ export class BookService {
       })
     });
   }
+
+  getBook(id: string) {
+    return this.http.get<IBookInfo>(`${this.CREATE_BOOK_URL}/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: `Kinvey ${localStorage.getItem('token')}`
+      })
+    });
+  }
+
+  changeBook(body: IBookInfo, id: string) {
+    delete body[`${id}`];
+    delete body[`${'_acl'}`];
+    return this.http.put<IBookInfo>(`${this.CREATE_BOOK_URL}/${id}`, body, {
+      headers: new HttpHeaders({
+        Authorization: `Kinvey ${localStorage.getItem('token')}`
+      })
+    });
+  }
 }

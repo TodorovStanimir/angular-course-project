@@ -1,0 +1,96 @@
+<div class="grid-container">
+    <div *ngIf="book && comments">
+        <div class="grid">
+            <div class="grid-item">
+                <div class="opacity">
+                    <p><img src="{{book.imageUrl}}"></p>
+                    <h4>{{book.title}}</h4>
+                    <h5>{{book.bookAuthor}}</h5>
+                    <h6>{{book.description}}</h6>
+                    <p>Genres: <span *ngFor="let genre of book.genres">{{genre}} </span></p>
+                    <div class="buttons-container">
+                        <div *ngIf="isAuthor(book)" class="buttons">
+                            <li> <button (click)="deleteBook( book['_id'])" class="card-link">delete</button></li>
+                            <li> <button [routerLink]="['/books/edit', book['_id'] ]" class="card-link">edit</button>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Provide additional information about book -->
+            <div class="grid-item">
+                <div class="opacity">
+                    <h5>Additional information</h5>
+                    <div class="additional-info">
+                        <button [disabled]="isAuthor(book)" (click)="showContact(book.author)">Posted by:
+                            {{book.author}}</button>
+                    </div>
+                    <div class="additional-info">
+                        <p>Year Issue: {{book.year}}</p>
+                    </div>
+                    <div class="additional-info">
+                        <p>Publisher: {{book.publisher}}</p>
+                    </div>
+                    <div class="additional-info">
+                        <p>Selling price: {{book.price.toFixed(2)}} BGN</p>
+                    </div>
+                    <div class="additional-info-footer">
+                        <div>
+                            <button [disabled]="isAuthor(book)" (click)="rateBook( book['_id'], 'like')"
+                                class="additional-info-footer-b-l">{{book.likes}} <i class="fa fa-heart"></i></button>
+                        </div>
+                        <div>
+                            <button [disabled]="isAuthor(book)" (click)="rateBook(book['_id'], 'dislike')"
+                                class="additional-info-footer-b-d">{{book.dislikes}} <i
+                                    class="fa fa-heart-broken"></i></button>
+                        </div>
+                    </div>
+                    <div *ngIf="emailOwnerBook && !showInfoOwnerBook" class="additional-info-footer">
+                        <p>You can emailed author of the book "{{book.title}}" to email: {{emailOwnerBook}} or call him
+                            to phone: {{phoneOwnerBook}}.</p>
+                    </div>
+                    <div class="additional-info-footer"> </div>
+                </div>
+            </div>
+            <!-- Provide information about comments -->
+            <div class="grid-item">
+                <div class="opacity">
+                    <h5>Comments</h5>
+                    <ng-template [ngIf]="!comments.length">
+                        <div class="comment-header">
+                            <p>There is not comments for this book. You can write the first one.</p>
+                        </div>
+                    </ng-template>
+                    <div class="comment-body">
+                        <h6>Add Comment</h6>
+                        <form #createComment="ngForm" (ngSubmit)="postComment()">
+                            <div class="comment-body-items">
+                                <textarea name="subject" type="text" placeholder="Your comment..." ngModel
+                                    required></textarea>
+                            </div>
+                            <button [disabled]="createComment.invalid">add comment</button>
+                        </form>
+                    </div>
+                    <ng-template [ngIf]="comments.length">
+                        <div class="comment-body">
+                            <article *ngFor="let comment of comments" class="comments">
+                                <div class="comment">
+                                    <div>
+                                        <p>{{comment.subject}}</p>
+                                    </div>
+                                    <div>
+                                        <span>Author of comment: {{comment['author']}}</span>
+                                    </div>
+                                    <div>
+                                        <button *ngIf="isAuthor(comment)" class="del-but"
+                                            (click)="delComment(comment['_id'])">delete</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

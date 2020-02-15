@@ -15,8 +15,9 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  getAllComments(bookId: string) {
-    return this.http.get<ICommentInfo[]>(`${this.CREATE_COMMENT_URL}?query={"bookId":"${bookId}"}&sort={"_kmd.ect": -1}`, {
+  getAllComments(criteria: string, bookId: string) {
+    const searchedCriteria = criteria==='all' ? '' : `?query={"${criteria}":"${bookId}"}&sort={"_kmd.ect": -1}`;
+    return this.http.get<ICommentInfo[]>(`${this.CREATE_COMMENT_URL}${searchedCriteria}`, {
       headers: new HttpHeaders({
         Authorization: `Kinvey ${localStorage.getItem('token')}`
       })

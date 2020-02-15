@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APP_KEY, APP_SECRET } from '../core/kinvey.tokens';
 import { IUser } from '../shared/interfaces/user';
 import { IUserInfo } from '../shared/interfaces/userInfo';
+import { IUserChanged } from '../shared/interfaces/userChanged';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,15 @@ export class UserService {
 
   getUser(username: string) {
     return this.http.get<IUserInfo[]>(`${this.BASE_URL}/?query={"username":"${username}"}`, {
+      headers: new HttpHeaders({
+        Authorization: `Kinvey ${this.token}`,
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  changeUser(body: IUserChanged, id: string) {
+    return this.http.put(`${this.BASE_URL}/${id}`, body, {
       headers: new HttpHeaders({
         Authorization: `Kinvey ${this.token}`,
         'Content-Type': 'application/json'

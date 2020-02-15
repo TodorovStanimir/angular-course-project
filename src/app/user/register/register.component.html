@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <h1>Registration Form</h1>
             <form #registerForm="ngForm" (ngSubmit)="hadleLogin(registerForm.value)">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -11,11 +10,11 @@
                     <input name="username" pattern="[A-Z][a-z]+\s[A-Z][a-z]+" class="form-control"
                         placeholder="Full Name" required ngModel>
                 </div>
-                <div class="alert alert-danger"
+                <div class="req-field"
                     *ngIf="registerForm?.controls.username?.touched && registerForm?.controls.username?.errors?.required">
                     This field is required!
                 </div>
-                <div class="alert alert-danger" *ngIf="registerForm?.controls.username?.errors?.pattern">
+                <div class="info-field" *ngIf="registerForm?.controls.username?.errors?.pattern">
                     Name shoud contain space between first and last name!
                 </div>
                 <div class="form-group input-group">
@@ -25,11 +24,11 @@
                     <input name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control"
                         placeholder="Email Address" type="email" required ngModel>
                 </div>
-                <div class="alert alert-danger"
+                <div class="req-field"
                     *ngIf="registerForm?.controls.email?.touched && registerForm?.controls.email?.errors?.required">
-                    Email field is required!
+                    This field is required!
                 </div>
-                <div class="alert alert-danger" *ngIf="registerForm?.controls.email?.errors?.pattern">
+                <div class="info-field" *ngIf="registerForm?.controls.email?.errors?.pattern">
                     Email shoud be a valid email address, like example@example.extension!
                 </div>
                 <div class="form-group input-group">
@@ -39,24 +38,25 @@
                     <input name="phoneNumber" pattern="^[+]{1}\d{11,}$" class="form-control" placeholder="Phone number"
                         type="text" required ngModel>
                 </div>
-                <div class="alert alert-danger"
+                <div class="req-field"
                     *ngIf="registerForm?.controls.phoneNumber?.touched && registerForm?.controls.phoneNumber?.errors?.required">
-                    Phone field is required and should start with '+'!
+                    This field is required!
                 </div>
-                <div class="alert alert-danger" *ngIf="registerForm?.controls.phoneNumber?.errors?.pattern">
+                <div class="info-field" *ngIf="registerForm?.controls.phoneNumber?.errors?.pattern">
                     Phone number should consists country code and at least 10 digits!
                 </div>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-building"></i> </span>
                     </div>
-                    <input name="occupation" pattern="[A-Za-z]+" class="form-control" placeholder="Occupation" type="text" required ngModel>
+                    <input name="occupation" pattern="[A-Za-z]+" class="form-control" placeholder="Occupation"
+                        type="text" required ngModel>
                 </div>
-                <div class="alert alert-danger"
+                <div class="req-field"
                     *ngIf="registerForm?.controls.occupation?.touched && registerForm?.controls.occupation?.errors?.required">
-                    Occupation is reqired!
+                    This field is required!
                 </div>
-                <div class="alert alert-danger" *ngIf="registerForm?.controls.occupation?.errors?.pattern">
+                <div class="info-field" *ngIf="registerForm?.controls.occupation?.errors?.pattern">
                     Occupation field should consists only letters!
                 </div>
                 <div ngModelGroup="passwords">
@@ -67,11 +67,11 @@
                         <input name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,16}$" class="form-control"
                             placeholder="Create password" type="password" required ngModel>
                     </div>
-                    <div class="alert alert-danger"
+                    <div class="req-field"
                         *ngIf="registerForm?.controls.passwords?.controls.password?.touched && registerForm?.controls.passwords?.controls.password?.errors?.required">
                         This field is required!
                     </div>
-                    <div class="alert alert-danger"
+                    <div class="info-field"
                         *ngIf="registerForm?.controls.passwords?.controls.password?.errors?.pattern">
                         Password shoud consists between 3 and 16 symbols: letters and digits!
                     </div>
@@ -79,14 +79,15 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input name="confirmPassword" pattern="{{registerForm?.controls.passwords?.controls.password?.value}}" class="form-control" placeholder="Repeat password" type="password"
-                            required ngModel>
+                        <input name="confirmPassword"
+                            pattern="{{registerForm?.controls.passwords?.controls.password?.value}}"
+                            class="form-control" placeholder="Repeat password" type="password" required ngModel>
                     </div>
-                    <div class="alert alert-danger"
+                    <div class="req-field"
                         *ngIf="registerForm?.controls.passwords?.controls.confirmPassword?.touched && registerForm?.controls.passwords?.controls.confirmPassword?.errors?.required">
                         This field is required!
                     </div>
-                    <div class="alert alert-danger"
+                    <div class="info-field"
                         *ngIf="registerForm?.controls.passwords?.controls.confirmPassword?.touched && registerForm?.controls.passwords?.controls.password?.value!==registerForm?.controls.passwords?.controls.confirmPassword?.value">
                         Passwords do not match!
                     </div>
@@ -95,19 +96,22 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-image"></i> </span>
                     </div>
-                    <input appImageUrlValidator name="imageUrl" class="form-control" placeholder="image url" type="url"
+                    <input name="imageUrl" pattern="^http[s]?:\/\/.+" class="form-control" placeholder="image url" type="url"
                         required ngModel>
                 </div>
-                <div class="alert alert-danger" *ngIf="registerForm.errors?.image">
-                    Image URL must start with http and end with jpg/png!
+                <div class="req-field"
+                    *ngIf="registerForm?.controls.imageUrl?.touched && registerForm?.controls.imageUrl?.errors?.required">
+                    This field is required!
+                </div>
+                <div class="info-field"  *ngIf="registerForm?.controls.imageUrl?.errors?.pattern">
+                    Image URL must start with http or https!
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block"
-                        [disabled]="registerForm.invalid">
+                    <button type="submit" class="btn btn-block" [disabled]="registerForm.invalid">
                         Create Account
                     </button>
                 </div>
-                <p class="text-center">Have an account? <a routerLink='/profile/login'>Log In</a> </p>
+                <p class="text-center"><b>Have an account? </b><a routerLink='/profile/login'><b>Log In</b></a> </p>
             </form>
         </div>
         <div class="col-lg-4"></div>

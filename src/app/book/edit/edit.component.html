@@ -1,1 +1,157 @@
-<p>edit works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <form *ngIf="editedBook" #editBookForm="ngForm" (ngSubmit)="hadleEditBook(editBookForm.value)">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-book"></i> </span>
+                            </div>
+                            <input name="title" [(ngModel)]="editedBook.title" type="text" pattern="[A-Z][A-Za-z\s]+"
+                                class="form-control" placeholder="Book title" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.title?.touched && editBookForm?.controls.title?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.title?.errors?.pattern">
+                            Title shoud contain only laters and start with capital letter!
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user-tie"></i> </span>
+                            </div>
+                            <input name="bookAuthor" [(ngModel)]="editedBook.bookAuthor"
+                                pattern="[A-Z][a-z]+\s[A-Z][a-z]+" class="form-control"
+                                placeholder="Names of book's author" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.bookAuthor?.touched && editBookForm?.controls.bookAuthor?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.bookAuthor?.errors?.pattern">
+                            Name should contain two names and space between first and last name!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-edit"></i> </span>
+                            </div>
+                            <input name="description" [(ngModel)]="editedBook.description" pattern=".{20,}"
+                                class="form-control" placeholder="Description" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.description?.touched && editBookForm?.controls.description?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.description?.errors?.pattern">
+                            Description should contain at least 20 leters!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-folder"></i> </span>
+                            </div>
+                            <input name="genres" [(ngModel)]="editedBook.genres" pattern="^[A-Za-z ,]+$"
+                                class="form-control" placeholder="Genres" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.genres?.touched && editBookForm?.controls.genres?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.genres?.errors?.pattern">
+                            Genres should contain genres of book separeted by space!
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
+                            </div>
+                            <input name="year" [(ngModel)]="editedBook.year" pattern="\d{4}" class="form-control"
+                                placeholder="Year issue" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.year?.touched && editBookForm?.controls.year?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.year?.errors?.pattern">
+                            Year should contain exactly 4 digits!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user-tie"></i> </span>
+                            </div>
+                            <input name="publisher" [(ngModel)]="editedBook.publisher" pattern="[A-Z][a-z\d\s]+"
+                                class="form-control" placeholder="Publisher" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.publisher?.touched && editBookForm?.controls.publisher?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.publisher?.errors?.pattern">
+                            Publishers should start wth capital letter and contain letters and digits!
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-dollar-sign"></i> </span>
+                            </div>
+                            <input name="price" [(ngModel)]="editedBook.price" pattern="^\d+[.]?\d{1,2}$"
+                                class="form-control" placeholder="Price" required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.price?.touched && editBookForm?.controls.price?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.price?.errors?.pattern">
+                            Price should contain only digits and one point!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+                            </div>
+                            <input name="imageUrl" [(ngModel)]="editedBook.imageUrl"
+                                pattern="^(https:\/\/)|(http:\/\/)[\w\W]+$" class="form-control" placeholder="Image Url"
+                                required>
+                        </div>
+                        <div class="req-field"
+                            *ngIf="editBookForm?.controls.imageUrl?.touched && editBookForm?.controls.imageUrl?.errors?.required">
+                            This field is required!
+                        </div>
+                        <div class="info-field" *ngIf="editBookForm?.controls.imageUrl?.errors?.pattern">
+                            Image Url should start wth http:// or https://
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block" [disabled]="editBookForm.invalid">
+                                Edit your book!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

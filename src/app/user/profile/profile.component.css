@@ -1,0 +1,75 @@
+.opacity {
+    opacity: 0.7;
+    border-radius: 0.5rem;
+    background: white;
+    color: black;
+}
+
+input.ng-valid {
+  border-left: 2px solid #42A948; /* green */
+}
+
+input.ng-invalid.ng-touched {
+  border-left: 2px solid #A94442; /* red */
+}
+.req-field{
+  background-color: #A94442;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 180px;
+}
+.info-field{
+  background-color: #A94442;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: auto;
+}
+i {
+  width: 12px;
+  color: #42A948;
+}
+span{
+  border-left: 2px solid grey;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+input{
+  border-right: 2px solid grey;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+.container {
+  margin-top: 50px;
+}
+li {
+  margin: 4px;
+  border-radius: 2px;
+  list-style-type: none;
+}
+
+.btn{
+  text-align: left;
+}
+
+button{
+  border: 2px solid grey;
+  background-color: #42A948;
+}
+.fa-thumbs-up {
+  color: white; 
+}
+
+.fa-thumbs-down {  
+  color: white;
+}
+.fa-comments {
+  color: white;
+}
+
+
+
+

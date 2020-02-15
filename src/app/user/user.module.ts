@@ -6,9 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { UserRoutingModule } from './user-routing.module';
+import { FindInArrayPipe } from '../shared/pipes/find-in-array.pipe';
+
 
 @NgModule({
-  declarations: [LoginComponent, ProfileComponent, RegisterComponent],
+  declarations: [LoginComponent, ProfileComponent, RegisterComponent, FindInArrayPipe],
   imports: [
     CommonModule,
     FormsModule,

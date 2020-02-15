@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit {
     const id = this.route.snapshot.params[`id`];
     this.bookService.getBook(id).subscribe((book) => {
       this.book = book;
-      this.commentService.getAllComments(id).subscribe((comments) => {
+      this.commentService.getAllComments('bookId', id).subscribe((comments) => {
         this.comments = comments.reverse();
       });
     });
@@ -57,7 +57,7 @@ export class DetailsComponent implements OnInit {
   }
 
   reLoadComments() {
-    this.commentService.getAllComments(this.book[`_id`])
+    this.commentService.getAllComments('bookId', this.book[`_id`])
       .subscribe((comments) => {
         this.comments = comments.reverse();
       });
@@ -79,7 +79,7 @@ export class DetailsComponent implements OnInit {
     this.bookService.getBook(id).subscribe((book) => {
       newBook = book;
       rate === 'like' ? newBook[`likes`] += 1 : newBook[`dislikes`] += 1;
-      this.bookService.changeBook(newBook, id).subscribe(() => {
+      this.bookService.editBook(newBook, id).subscribe(() => {
         this.ngOnInit();
       });
     });

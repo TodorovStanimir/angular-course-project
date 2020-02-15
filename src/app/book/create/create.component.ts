@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateComponent implements OnInit {
 
-  @ViewChild('createBookForm', { static: true }) htmlForm: NgForm;
+  // @ViewChild('createBookForm', { static: true }) htmlForm: NgForm;
 
   constructor(private router: Router, private bookService: BookService, private toastr: ToastrService) { }
 

@@ -3,11 +3,13 @@
         <div class="grid">
             <div class="grid-item">
                 <div class="opacity">
-                    <p><img src="{{book.imageUrl}}"></p>
-                    <h4>{{book.title}}</h4>
-                    <h5>{{book.bookAuthor}}</h5>
+                    <div class="main-info">
+                        <p><img src="{{book.imageUrl}}"></p>
+                        <h4>{{book.title}}</h4>
+                        <h5>{{book.bookAuthor}}</h5>
+                    </div>
                     <h6>{{book.description}}</h6>
-                    <p>Genres: <span *ngFor="let genre of book.genres">{{genre}} </span></p>
+                    <p class="genres">Genres: <span *ngFor="let genre of book.genres">{{genre}} </span></p>
                     <div class="buttons-container">
                         <div *ngIf="isAuthor(book)" class="buttons">
                             <li> <button (click)="deleteBook( book['_id'])" class="card-link">delete</button></li>
@@ -22,8 +24,8 @@
                 <div class="opacity">
                     <h5>Additional information</h5>
                     <div class="additional-info">
-                        <button [disabled]="isAuthor(book)" (click)="showContact(book.author)">Posted by:
-                            {{book.author}}</button>
+                        <button [disabled]="isAuthor(book)" (click)="showContact(book.author)"><b>Posted by:
+                                {{book.author}}</b></button>
                     </div>
                     <div class="additional-info">
                         <p>Year Issue: {{book.year}}</p>
@@ -37,12 +39,13 @@
                     <div class="additional-info-footer">
                         <div>
                             <button [disabled]="isAuthor(book)" (click)="rateBook( book['_id'], 'like')"
-                                class="additional-info-footer-b-l">{{book.likes}} <i class="fa fa-heart"></i></button>
+                                class="additional-info-footer-b-l"><b>{{book.likes}}</b>&nbsp;&nbsp;<i
+                                    class="fa fa-thumbs-up"></i></button>
                         </div>
                         <div>
                             <button [disabled]="isAuthor(book)" (click)="rateBook(book['_id'], 'dislike')"
-                                class="additional-info-footer-b-d">{{book.dislikes}} <i
-                                    class="fa fa-heart-broken"></i></button>
+                                class="additional-info-footer-b-d"><b>{{book.dislikes}}</b>&nbsp;&nbsp;<i
+                                    class="fa fa-thumbs-down"></i></button>
                         </div>
                     </div>
                     <div *ngIf="emailOwnerBook && !showInfoOwnerBook" class="additional-info-footer">
@@ -79,7 +82,7 @@
                                         <p>{{comment.subject}}</p>
                                     </div>
                                     <div>
-                                        <span>Author of comment: {{comment['author']}}</span>
+                                        <p>Author of comment: {{comment['author']}}</p>
                                     </div>
                                     <div>
                                         <button *ngIf="isAuthor(comment)" class="del-but"

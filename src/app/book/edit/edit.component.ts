@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IBook } from 'src/app/shared/interfaces/book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book.service';
-import { ToastrService } from 'ngx-toastr';
 import { IBookInfo } from 'src/app/shared/interfaces/bookInfo';
 
 @Component({
@@ -17,8 +16,7 @@ export class EditComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private bookService: BookService,
-    private toastr: ToastrService
+    private bookService: BookService
   ) { }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 .container {
-    margin-top: 50px;
+    margin-top: 31px;
+    margin-bottom: -594px;
 }
 input.ng-valid {
     border-left: 2px solid #42A948; /* green */

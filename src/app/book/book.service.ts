@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { APP_KEY } from '../core/kinvey.tokens';
 import { IBook } from '../shared/interfaces/book';
@@ -10,61 +10,36 @@ import { IBookInfo } from '../shared/interfaces/bookInfo';
 })
 export class BookService {
   private readonly BASE_URL = `https://baas.kinvey.com/appdata/${APP_KEY}`;
-  private readonly ALL_BOOKS_URL = `${this.BASE_URL}/books?query={}&sort={"_kmd.ect": -1}`;
-  private readonly CREATE_BOOK_URL = `${this.BASE_URL}/books`;
+  private readonly BOOKS_URL = `${this.BASE_URL}/books`;
 
 
   constructor(private http: HttpClient) { }
 
 
   createBook(body: IBook) {
-    return this.http.post(this.CREATE_BOOK_URL, body, {
-      headers: new HttpHeaders({
-        Authorization: `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.post(this.BOOKS_URL, body);
   }
 
   getAllBooks() {
-    return this.http.get<IBookInfo[]>(this.ALL_BOOKS_URL, {
-      headers: new HttpHeaders({
-        Authorization: `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.get<IBookInfo[]>(this.BOOKS_URL);
   }
 
   getUserBooks() {
     return this.http.get<IBookInfo[]>
-      (`${this.BASE_URL}/books?query={"author":"${localStorage.getItem(`username`)}"}&sort={"_kmd.ect":-1}`, {
-        headers: new HttpHeaders({
-          Authorization: `Kinvey ${localStorage.getItem('token')}`
-        })
-      });
+      (`${this.BASE_URL}/books?query={"author":"${localStorage.getItem(`username`)}"}&sort={"_kmd.ect":-1}`);
   }
 
   deleteBook(id: string) {
-    return this.http.delete(`${this.CREATE_BOOK_URL}/${id}`, {
-      headers: new HttpHeaders({
-        Authorization: `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.delete(`${this.BOOKS_URL}/${id}`);
   }
 
   getBook(id: string) {
-    return this.http.get<IBookInfo>(`${this.CREATE_BOOK_URL}/${id}`, {
-      headers: new HttpHeaders({
-        Authorization: `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.get<IBookInfo>(`${this.BOOKS_URL}/${id}`);
   }
 
   editBook(body: IBookInfo, id: string) {
     delete body[`${id}`];
     delete body[`${'_acl'}`];
-    return this.http.put<IBookInfo>(`${this.CREATE_BOOK_URL}/${id}`, body, {
-      headers: new HttpHeaders({
-        Authorization: `Kinvey ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.put<IBookInfo>(`${this.BOOKS_URL}/${id}`, body);
   }
 }

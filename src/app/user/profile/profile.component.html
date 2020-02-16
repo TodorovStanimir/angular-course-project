@@ -1,6 +1,6 @@
 <div *ngIf="editedUser" class="container">
     <div class="row">
-        <div class="col-lg-2"> </div>
+        <img [src]="editedUser.imageUrl" width="120" height="160">
         <div class="col-lg-4">
             <form #editUserForm="ngForm" (ngSubmit)="hadleEditUser(editUserForm.value)">
                 <div class="form-group input-group">
@@ -82,8 +82,8 @@
                     <i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;
                     {{book.dislikes}}&nbsp;
                     <i class="fa fa-thumbs-down"></i>&nbsp;
-                    {{ booksComments | findInArray: book.title}}&nbsp;
-                    <i class="fa fa-comments"></i>
+                    <span *ngIf="booksComments.length>0">{{ booksComments | findInArray: book.title}}&nbsp;
+                    <i class="fa fa-comments"></i></span>
                 </button>
             </div>
         </div>

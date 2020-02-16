@@ -12,8 +12,7 @@ const routes: Routes = [
     { path: 'user', component: BooksComponent },
     { path: 'create', component: CreateComponent },
     { path: 'details/:id', component: DetailsComponent },
-    { path: 'edit/:id', component: EditComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    { path: 'edit/:id', component: EditComponent }
 ];
 
 // @NgModule({

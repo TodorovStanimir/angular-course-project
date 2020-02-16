@@ -32,7 +32,7 @@ i {
   width: 12px;
   color: #42A948;
 }
-span{
+span.input-group-text{
   border-left: 2px solid grey;
   border-top: 2px solid grey;
   border-bottom: 2px solid grey;
@@ -44,6 +44,7 @@ input{
 }
 .container {
   margin-top: 50px;
+  margin-bottom: -411px;
 }
 li {
   margin: 4px;
@@ -68,6 +69,11 @@ button{
 }
 .fa-comments {
   color: white;
+}
+
+img {
+  border-radius: 10px;
+  opacity: 0.5;
 }
 
 

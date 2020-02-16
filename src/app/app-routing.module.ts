@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { HomeComponent } from './shared/home/home.component';
-import { NoAuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/profile/login' },
   { path: 'profile', loadChildren: './user/user.module#UserModule' },
-  { path: 'books', loadChildren: './book/book.module#BookModule' },
+  { path: 'books', loadChildren: './book/book.module#BookModule', canLoad: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 

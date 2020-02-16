@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IBook } from 'src/app/shared/interfaces/book';
 import { BookService } from '../book.service';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-create',
@@ -14,7 +14,7 @@ export class CreateComponent implements OnInit {
 
   // @ViewChild('createBookForm', { static: true }) htmlForm: NgForm;
 
-  constructor(private router: Router, private bookService: BookService, private toastr: ToastrService) { }
+  constructor(private router: Router, private bookService: BookService) { }
 
   ngOnInit() {
   }

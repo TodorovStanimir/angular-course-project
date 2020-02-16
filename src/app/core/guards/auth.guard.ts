@@ -1,15 +1,21 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
 
-export class NoAuthGuard implements CanActivate {
 
-    constructor(private userService: UserService, private router: Router) { }
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthGuard implements CanLoad {
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    constructor(private router: Router, private userService: UserService) { }
 
-        if (!this.userService.isAuthenticated()) { return true; }
+    canLoad(route: Route, segments: UrlSegment[]) {
+        if (this.userService.isAuthenticated()) {
+            return true;
+        }
 
-        this.router.navigate(['books/all']);
+        this.router.navigate(['/profile/login']);
         return false;
     }
 }

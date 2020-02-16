@@ -1,7 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +12,7 @@ export class NavigationComponent implements OnInit, DoCheck {
   username: string;
   isLoggedIn: boolean;
 
-  constructor(private router: Router, private userService: UserService, private toastr: ToastrService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -25,9 +24,8 @@ export class NavigationComponent implements OnInit, DoCheck {
 
   logout() {
     this.userService.logout().subscribe(data => {
-      this.toastr.success('Logout succesfully', 'Success!');
       localStorage.clear();
-      this.router.navigate(['']);
+      this.router.navigate(['/profile/login']);
     });
   }
 

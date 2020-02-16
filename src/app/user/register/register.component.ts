@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { UserService } from '../user.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('registerForm', { static: true }) htmlForm: NgForm;
 
-  constructor(private router: Router, private userService: UserService, private toastr: ToastrService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -25,7 +24,6 @@ export class RegisterComponent implements OnInit {
     delete userInfo[`passwords`];
 
     this.userService.register(userInfo).subscribe(res => {
-      this.toastr.success('You have registered successfully', 'Success!');
       this.router.navigate(['/profile/login']);
     });
   }

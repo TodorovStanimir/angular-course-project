@@ -9,15 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './shared/home/home.component';
 import { TokenInterceptor } from './core/interceptors/token-interceptor';
 import { ResponseHandlerInterceptor } from './core/interceptors/response-handler-interceptor';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    // HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-// import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
@@ -14,11 +13,5 @@ const routes: Routes = [
     { path: 'details/:id', component: DetailsComponent },
     { path: 'edit/:id', component: EditComponent }
 ];
-
-// @NgModule({
-//     imports: [RouterModule.forChild(routes)],
-//     exports: [RouterModule]
-// })
-// export class BookRoutingModule { }
 
 export const BookRoutingModule = RouterModule.forChild(routes);

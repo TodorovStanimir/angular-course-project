@@ -1,0 +1,6 @@
+<div class="comment-body">
+    <article class="comments">
+            <p>{{comment.subject}}<br>{{comment.author}}</p>
+            <button *ngIf="isAuthor(comment)" class="del-but" (click)="delComment(comment['_id'])">delete</button>
+    </article>
+</div>

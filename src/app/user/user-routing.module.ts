@@ -9,14 +9,8 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: 'login', component: LoginComponent, canActivate: [UserGuard] },
     { path: 'profile', component: ProfileComponent },
-    { path: 'register', component: RegisterComponent, canActivate: [UserGuard]  },
-    // { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    { path: 'register', component: RegisterComponent, canActivate: [UserGuard]  }
 ];
 
-// @NgModule({
-//     imports: [RouterModule.forChild(routes)],
-//     exports: [RouterModule]
-// })
-// export class FurnitureRoutingModule { }
 
 export const UserRoutingModule = RouterModule.forChild(routes);

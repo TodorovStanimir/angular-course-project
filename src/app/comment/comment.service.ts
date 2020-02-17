@@ -28,5 +28,4 @@ export class CommentService {
     return this.http.delete(`${this.CREATE_COMMENT_URL}/${commentId}`);
   }
 
-
 }

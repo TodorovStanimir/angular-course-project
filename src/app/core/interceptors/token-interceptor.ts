@@ -6,13 +6,12 @@ import { APP_KEY, APP_SECRET } from '../kinvey.tokens';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TokenInterceptor implements HttpInterceptor {
 
-    constructor(
-        private userService: UserService,
-        private toastr: ToastrService
-    ) { }
+    constructor(private userService: UserService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (req.url.endsWith(`/user/${APP_KEY}`) || req.url.endsWith(`login`)) {
@@ -34,7 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
             .pipe(
                 tap((event: HttpEvent<any>) => {
                     if (event instanceof HttpResponse && req.url.endsWith(`login`)) {
-                        // this.toastr.success('Logged in succesfully');
                         this.userService.saveUserInfo(event.body);
                     }
                 })

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { IBookInfo } from 'src/app/shared/interfaces/bookInfo';
 import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-books',
@@ -9,42 +10,32 @@ import { BookService } from '../book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  allBooks: IBookInfo[];
+  allBooks$: Observable<IBookInfo[]>;
 
   constructor(
     private bookService: BookService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
-  fetchData() {
+  ngOnInit() {
     this.route.url.subscribe((s: UrlSegment[]) => {
       if (s['0'].path === 'all') {
-        this.bookService.getAllBooks().subscribe((data) => {
-          this.allBooks = data;
-        });
+        this.allBooks$ = this.bookService.getAllBooks();
       } else {
-        this.bookService.getUserBooks().subscribe((data) => {
-          this.allBooks = data;
-        });
+        this.allBooks$ = this.bookService.getUserBooks();
       }
     });
   }
 
-  ngOnInit() {
-    this.fetchData();
-  }
-
   deleteBook(id: string) {
-    this.bookService.deleteBook(id).subscribe(() => {
-      this.fetchData();;
-    });
+    this.bookService.deleteBook(id)
+      .subscribe(() => {
+        this.allBooks$ = this.bookService.getUserBooks();
+      });
   }
 
   isAuthor(book: IBookInfo) {
     return book[`_acl`][`creator`] === localStorage.getItem(`userId`);
   }
-
-
 
 }

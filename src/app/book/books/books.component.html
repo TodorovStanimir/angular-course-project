@@ -1,6 +1,6 @@
 <div class="grid-container">
     <div class="grid">
-        <div class="grid-item" *ngFor="let book of allBooks">
+        <div class="grid-item" *ngFor="let book of (allBooks$ | async)">
             <div class="opacity">
                 <p><img src="{{book.imageUrl}}"></p>
                 <h4>{{book.title}}</h4>

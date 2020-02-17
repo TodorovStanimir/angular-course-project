@@ -20,12 +20,11 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
             if (success instanceof HttpResponse) {
                 let result = '';
                 if (success.status === 201) {
-                    if (success.url.includes('user')) { result = 'Successful registration!'; }
+                    if (success.url.includes('user')) { result = 'Successfully registration!'; }
                     if (success.url.endsWith('books')) { result = 'Successfully created book!'; }
                     if (success.url.endsWith('comments')) { result = 'Successfully created comment!'; }
                 }
                 if (success.status === 200 && req.method === 'GET') {
-                    if (success.url.endsWith('login')) { result = 'Successful logged in!'; }
                     if (success.url.endsWith('books')) { result = 'Successfully loaded all book!'; }
                     if (success.url.includes('/books?query={%22author%22')) { result = 'Successfully loaded user\'s books!'; }
                     if (!success.url.endsWith('books') && !success.url.includes('/books?query={%22author%22')) {
@@ -35,7 +34,7 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
                     if (success.url.includes('/comments?query={%22bookId%22')) { result = 'Successfully loaded books\'s comments!'; }
                 }
                 if (success.status === 200 && req.method === 'POST') {
-                    if (success.url.endsWith('login')) { result = 'Successful logged in!'; }
+                    if (success.url.endsWith('login')) { result = 'Successfully logged in!'; }
                 }
                 if (success.status === 200 && req.method === 'DELETE') {
                     if (success.url.includes('comments')) { result = 'Successful deleted comment!'; }
@@ -51,16 +50,14 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
 
                 this.toastr.success(result);
             }
-        }), catchError((err) => {
-
-            if (err.status === 409) {
-                this.toastr.error(err.error.description);
-                this.router.navigate(['/profile/register']);
-                throw err;
-            }
+        }), catchError((err: HttpErrorResponse) => {
 
             this.toastr.error(err.error.description);
-            this.router.navigate(['/profile/login']);
+
+            err.status === 409
+                ? this.router.navigate(['/profile/register'])
+                : this.router.navigate(['/profile/login']);
+
             throw err;
         })
         );

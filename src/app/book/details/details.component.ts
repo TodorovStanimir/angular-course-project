@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book.service';
 import { CommentService } from 'src/app/comment/comment.service';
 import { IBookInfo } from 'src/app/shared/interfaces/bookInfo';
 import { ICommentInfo } from 'src/app/shared/interfaces/commentInfo';
-import { NgForm } from '@angular/forms';
-import { IBook } from 'src/app/shared/interfaces/book';
 import { UserService } from 'src/app/user/user.service';
+import { IComment } from 'src/app/shared/interfaces/comment';
 
 @Component({
   selector: 'app-detail',
@@ -19,7 +18,6 @@ export class DetailsComponent implements OnInit {
   emailOwnerBook: string;
   phoneOwnerBook: string;
   showInfoOwnerBook = true;
-  @ViewChild('createComment', { static: false }) createCommentF: NgForm;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,9 +31,7 @@ export class DetailsComponent implements OnInit {
     const id = this.route.snapshot.params[`id`];
     this.bookService.getBook(id).subscribe((book) => {
       this.book = book;
-      this.commentService.getAllComments('bookId', id).subscribe((comments) => {
-        this.comments = comments.reverse();
-      });
+      this.loadComments();
     });
   }
 
@@ -45,18 +41,13 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  postComment() {
-    const body = this.createCommentF.value;
-    body[`bookId`] = this.book[`_id`];
-    body[`author`] = localStorage.getItem(`username`);
-    this.commentService.postComment(body)
-      .subscribe(() => {
-        this.createCommentF.reset();
-        this.reLoadComments();
-      });
+  postComment(body: IComment) {
+    this.commentService.postComment(body).subscribe(() => {
+      this.loadComments();
+    });
   }
 
-  reLoadComments() {
+  loadComments() {
     this.commentService.getAllComments('bookId', this.book[`_id`])
       .subscribe((comments) => {
         this.comments = comments.reverse();
@@ -64,10 +55,9 @@ export class DetailsComponent implements OnInit {
   }
 
   delComment(id: string) {
-    this.commentService.deleteComment(id)
-      .subscribe(() => {
-        this.reLoadComments();
-      });
+    this.commentService.deleteComment(id).subscribe(() => {
+      this.loadComments();
+    });
   }
 
   isAuthor(book: IBookInfo) {

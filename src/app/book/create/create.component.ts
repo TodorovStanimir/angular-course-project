@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IBook } from 'src/app/shared/interfaces/book';
 import { BookService } from '../book.service';
@@ -11,8 +10,6 @@ import { BookService } from '../book.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-
-  // @ViewChild('createBookForm', { static: true }) htmlForm: NgForm;
 
   constructor(private router: Router, private bookService: BookService) { }
 

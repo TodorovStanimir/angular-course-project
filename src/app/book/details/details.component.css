@@ -30,12 +30,18 @@
     align-items: flex-start;
     width: 25%;
   }
-
   .buttons-container {
-    padding: 10px 0;
+    padding: 10px;
     align-items: flex-end;
     display: flex;
     justify-content: center;
+
+  }
+  li button{
+    border-radius: 0.5rem;
+    width: 2.5cm;
+    color: whitesmoke;
+    background-color: black;
   }
   
   .buttons {
@@ -79,71 +85,7 @@ span {
 }
 
 button{
-    /* background: transparent; */
     border-radius: 0.5rem;
-}
-
-.comment-header {
-  display: flex;
-  justify-content: left;
-}
-
-.comment-header p {
-  margin: 0.3cm;
-  margin-bottom: 0.4cm;
-  text-align: left;
-}
-
-.comment-body p {
-  display: flex;
-  margin-left: 0.4cm;
-  text-align: left;
-}
-
-.comment-body-items{
-  display: flex;
-  flex-direction: column;
-  margin-left: 0.2cm;
-  resize: none;
-  border-radius: 0.5rem;
-}
-
-.comment-body textarea{
-  margin-left: 0.2cm;
-  margin-right: 0.4cm;
-  margin-bottom: 6px;
-  height: 5em;
-  resize: none;
-  border-radius: 0.5rem;
-  background-color: whitesmoke;
-  color: black;
-}
-
-.comment-body button{
-  margin-left: 0.4cm;
-  margin-bottom: 0.4cm;
-  resize: none;
-  align-items: center;
-  width: 4cm;
-  color: whitesmoke;
-  background-color: black;
-}
-
-.comments span{
-  margin-left: 0.4cm;
-}
-
-.comment p{
-  margin-bottom: -2px;
-  margin-top: -8px;
-  font-style: italic;
-}
-li button{
-  /* background: transparent; */
-  border-radius: 0.5rem;
-  width: 2.5cm;
-  color: whitesmoke;
-  background-color: black;
 }
 
 /* CSS for Additional info */

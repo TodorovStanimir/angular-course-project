@@ -59,39 +59,10 @@
             <div class="grid-item">
                 <div class="opacity">
                     <h5>Comments</h5>
-                    <ng-template [ngIf]="!comments.length">
-                        <div class="comment-header">
-                            <p>There is not comments for this book. You can write the first one.</p>
-                        </div>
-                    </ng-template>
-                    <div class="comment-body">
-                        <h6>Add Comment</h6>
-                        <form #createComment="ngForm" (ngSubmit)="postComment()">
-                            <div class="comment-body-items">
-                                <textarea name="subject" type="text" placeholder="Your comment..." ngModel
-                                    required></textarea>
-                            </div>
-                            <button [disabled]="createComment.invalid">add comment</button>
-                        </form>
-                    </div>
-                    <ng-template [ngIf]="comments.length">
-                        <div class="comment-body">
-                            <article *ngFor="let comment of comments" class="comments">
-                                <div class="comment">
-                                    <div>
-                                        <p>{{comment.subject}}</p>
-                                    </div>
-                                    <div>
-                                        <p>Author of comment: {{comment['author']}}</p>
-                                    </div>
-                                    <div>
-                                        <button *ngIf="isAuthor(comment)" class="del-but"
-                                            (click)="delComment(comment['_id'])">delete</button>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </ng-template>
+                    <app-comment-create [bookId]="book._id" [comments]="comments"
+                        (createCommentEmitter)="postComment($event)"></app-comment-create>
+                    <app-comment-details *ngFor="let comment of comments" [comment]="comment"
+                        (deleteCommentEmitter)="delComment($event)"></app-comment-details>
                 </div>
             </div>
         </div>

@@ -8,9 +8,11 @@ It was generated with [Angular CLI](https://github.com/angular/angular-cli) vers
 
 The application have public part and private part. 
 
-The public part is visible without authetntication. It consists:
-    - register form;
-    - login form. 
+The public part is visible without authetntication. 
+
+It consists:
+    register form;
+    login form. 
 
 The private part is visible for all successful login users. 
 It holds managment functionality for the users's profiles:

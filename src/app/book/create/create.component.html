@@ -77,8 +77,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
                             </div>
-                            <input name="year" pattern="\d{4}" class="form-control" placeholder="Year issue" required
-                                ngModel>
+                            <input name="year" pattern="\d{4}" class="form-control" placeholder="Year issue"
+                                type="number" required ngModel>
                         </div>
                         <div class="req-field"
                             *ngIf="createBookForm?.controls.year?.touched && createBookForm?.controls.year?.errors?.required">
@@ -112,7 +112,7 @@
                                 <span class="input-group-text"> <i class="fa fa-dollar-sign"></i> </span>
                             </div>
                             <input name="price" pattern="^\d+[.]?\d{1,2}$" class="form-control" placeholder="Price"
-                                required ngModel>
+                                type="number" required ngModel>
                         </div>
                         <div class="req-field"
                             *ngIf="createBookForm?.controls.price?.touched && createBookForm?.controls.price?.errors?.required">

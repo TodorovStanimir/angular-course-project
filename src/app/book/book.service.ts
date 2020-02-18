@@ -38,8 +38,6 @@ export class BookService {
   }
 
   editBook(body: IBookInfo, id: string) {
-    delete body[`${id}`];
-    delete body[`${'_acl'}`];
     return this.http.put<IBookInfo>(`${this.BOOKS_URL}/${id}`, body);
   }
 }

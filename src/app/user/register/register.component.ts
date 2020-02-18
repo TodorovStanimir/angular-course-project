@@ -13,13 +13,14 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('registerForm', { static: true }) htmlForm: NgForm;
 
+  get formControls() { return this.htmlForm.controls; }
+
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
 
   hadleLogin(userInfo: IUser) {
-
     userInfo[`password`] = userInfo[`passwords`][`password`];
     delete userInfo[`passwords`];
 

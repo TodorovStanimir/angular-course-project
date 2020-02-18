@@ -79,7 +79,7 @@
                                 <span class="input-group-text"> <i class="fa fa-calendar-alt"></i> </span>
                             </div>
                             <input name="year" [(ngModel)]="editedBook.year" pattern="\d{4}" class="form-control"
-                                placeholder="Year issue" required>
+                                placeholder="Year issue" type="number" required>
                         </div>
                         <div class="req-field"
                             *ngIf="editBookForm?.controls.year?.touched && editBookForm?.controls.year?.errors?.required">

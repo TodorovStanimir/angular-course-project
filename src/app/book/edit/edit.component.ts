@@ -29,6 +29,9 @@ export class EditComponent implements OnInit {
     const newBook: IBookInfo = Object.assign(this.editedBook, newValueEditedBook);
     newBook.genres = (newValueEditedBook.genres as any).split(' ');
     newBook.price = Number(newBook.price);
+    newBook.year = Number(newBook.year);
+    delete newBook._id;
+    delete newBook._acl;
     this.bookService.editBook(newBook, this.id)
       .subscribe(data => {
         this.router.navigate(['/books/user']);

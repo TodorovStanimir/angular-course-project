@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
   editedUser: IUserInfo;
   userComments: ICommentInfo[];
   userBooks: IBookInfo[];
-  booksComments: Array<[string, number]> = [];
+  // booksComments: Array<[string, number]> = [];
+  booksComments: object[] = [];
 
   constructor(
     private userService: UserService,
@@ -46,7 +47,8 @@ export class ProfileComponent implements OnInit {
         res[3].map(comm => {
           if (comm[`bookId`] === book._id) { counter++; }
         });
-        this.booksComments.push([book.title, counter]);
+        // this.booksComments.push([book.title, counter]);
+        this.booksComments.push(Object.defineProperty({}, book.title, { value: counter }));
       });
     });
   }

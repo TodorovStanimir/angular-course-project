@@ -20,7 +20,7 @@ export class CommentDetailsComponent implements OnInit {
     this.deleteCommentEmitter.emit(id);
   }
 
-  isAuthor(book: IBookInfo) {
+  isAuthor(book: ICommentInfo) {
     return book[`_acl`][`creator`] === localStorage.getItem(`userId`);
   }
 

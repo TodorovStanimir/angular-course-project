@@ -1,27 +1,36 @@
-# CourseProject
+# Angular project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+Book store is SPA for advertising the books.
 
-## Development server
+It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Application structure
 
-## Code scaffolding
+The application have public part and private part. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The public part is visible without authetntication. 
 
-## Build
+It consists:
+register form;
+login form. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The private part is visible for all successful login users. 
 
-## Running unit tests
+It holds managment functionality for the users's profiles:
+- user can change his information: email, phone, occupation, profile picture;
+- user getting information for all his books, count of likes, unlikes, comments and can navigate to each his book.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The rest of the private part consists:
+- page showing all books in application.
+- page showing only books of the current user.
+In this two pages each user can edit or delete his books, can read detail information for each book. Here user can comment books or delete his comments, can rate /like or unlike/ books of other users, but not rate owned by him books, can see contact information for owner of the book - email and phone number.
+- page for creating a new book. Here user can add a new book.
+All input forms are template-drivven forms with validation of entered information. 
 
-## Running end-to-end tests
+Appication is separated in:
+- book module. It consists four components, book routing module file, book services file, book module file;
+- comment module. It consists two components, comment routing module file, comment services file, comment module file;
+- core module. It consists guards folder, interceptors folder,  core module file, kinvey tokens file;
+- shared module. It consists footer, navigation, interfaces, pipes folders, not found component and shared modue file;
+- user module.  It consists login, profile and register folders, user routing file, user modue file, user service file;
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

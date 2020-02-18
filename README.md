@@ -21,7 +21,6 @@ The rest of the private part consists:
     - page showing only books of the current user.
     In this two pages each user can edit or delete his books, can read detail information for each book. Here user can comment books or delete his comments, can rate /like or unlike/ books of other users, but not rate owned by him books, can see contact information for owner of the book - email and phone number.
     - page for creating a new book. Here user can add a new book.
-    
     All input forms are template-drivven forms with validation of entered information. Appication is separated in:
     - book module. It consists four components, book routing module file, book services file, book module file;
     - comment module. It consists two components, comment routing module file, comment services file, comment module file;

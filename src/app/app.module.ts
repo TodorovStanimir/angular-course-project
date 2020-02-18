@@ -24,7 +24,10 @@ import { ResponseHandlerInterceptor } from './core/interceptors/response-handler
     FormsModule,
     SharedModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      progressBar: true,
+      timeOut: 2500
+    }),
     AppRoutingModule
   ],
   providers: [

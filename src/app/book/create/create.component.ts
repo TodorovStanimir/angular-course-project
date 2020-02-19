@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  hadleCreateBook(book: IBook) {
+  handleCreateBook(book: IBook) {
     const newBook: IBook = Object.assign(book, { likes: 0, dislikes: 0, author: localStorage.getItem('username') });
     newBook.genres = (newBook.genres as any).split(' ');
     newBook.price = Number(newBook.price);

@@ -25,8 +25,12 @@ import { ResponseHandlerInterceptor } from './core/interceptors/response-handler
     SharedModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      toastClass: 'ngx-toastr',
       progressBar: true,
-      timeOut: 2500
+      timeOut: 2500,
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true
     }),
     AppRoutingModule
   ],
